@@ -135,6 +135,7 @@ workflows:
                       - hold
     deploy-dev-workflow:
         jobs:
+            - build
             - deploy-dev:
                   requires:
                       - build
