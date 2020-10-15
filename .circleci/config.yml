@@ -122,7 +122,7 @@ workflows:
                 filters:
                     branches:
                         only:
-                            - circleci-project-setup
+                            - master
             - deploy-qa:
                   requires:
                       - prepare-dependencies
@@ -135,26 +135,8 @@ workflows:
                       - hold
     deploy-dev-workflow:
         jobs:
-            - prepare-dependencies
             - deploy-dev:
                   requires:
-                      - prepare-dependencies
+                      - build
 
-    deploy-qa-workflow:
-        jobs:
-            - prepare-dependencies:
-                filters:
-                    branches:
-                        only:
-                            - circleci-project-setup
-            - deploy-qa:
-                  requires:
-                      - prepare-dependencies
-            - hold:
-                  type: approval
-                  requires:
-                      - deploy-qa
-            - deploy-prod:
-                  requires:
-                      - hold
     
