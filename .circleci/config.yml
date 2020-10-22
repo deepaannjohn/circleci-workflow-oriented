@@ -135,7 +135,7 @@ workflows:
                       - hold
     deploy-dev-workflow:
         jobs:
-            - build
+            - build:
                 filters:
                   branches:
                     only:
