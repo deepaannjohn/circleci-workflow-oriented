@@ -136,10 +136,10 @@ workflows:
     deploy-dev-workflow:
         jobs:
             - build
+                filters:
+                  branches:
+                    only:
+                      - master
             - deploy-dev:
                 requires:
                   - build
-                filters:
-                    branches:
-                        only:
-                            - master
