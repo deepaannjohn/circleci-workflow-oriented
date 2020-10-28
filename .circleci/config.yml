@@ -65,6 +65,10 @@ jobs:
     deploy-qa:
         machine:
             image: ubuntu-1604:202004-01
+        parameters:
+            velocity-parameter:
+              type: string
+              default: velocity-parm-qa
         steps:
             - attach_workspace:
                   at: .
@@ -87,6 +91,10 @@ jobs:
     deploy-prod:
         machine:
             image: ubuntu-1604:202004-01
+        parameters:
+            velocity-parameter:
+              type: string
+              default: velocity-parm-prod
         steps:
             - attach_workspace:
                   at: .
@@ -124,6 +132,7 @@ workflows:
                         only:
                             - circleci-project-setup
             - deploy-qa:
+                  velocity-parameter: 'passing this as qa'
                   requires:
                       - prepare-dependencies
             - hold:
@@ -131,6 +140,7 @@ workflows:
                   requires:
                       - deploy-qa
             - deploy-prod:
+                  velocity-parameter: 'passing this as prod'
                   requires:
                       - hold
     deploy-dev-workflow:
