@@ -86,8 +86,8 @@ jobs:
                   command: |
                       echo "export __BUILD_VERSION=\"$(cat version.txt)\"" >> $BASH_ENV
             - run:
-                  name: Print __BUILD_VERSION
-                  command: echo $__BUILD_VERSION
+                  name: Print passed parm
+                  command: echo << parameters.velocity-parm-qa >>
     deploy-prod:
         machine:
             image: ubuntu-1604:202004-01
@@ -112,8 +112,8 @@ jobs:
                   command: |
                       echo "export __BUILD_VERSION=\"$(cat version.txt)\"" >> $BASH_ENV
             - run:
-                  name: Print __BUILD_VERSION
-                  command: echo $__BUILD_VERSION
+                  name: Print passed parm
+                  command: command: echo << parameters.velocity-parm-prod >>
 
 workflows:
     version: 2
