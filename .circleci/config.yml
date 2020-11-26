@@ -124,11 +124,12 @@ workflows:
     
     deploy-prod-workflow:
         jobs:
-            - deploy-qa:
-                  filters:
+            - prepare-dependencies:
+                filters:
                     branches:
                         only:
                             - circleci-project-setup
+            - deploy-qa:
                   velocity-parameter: 'passing this as qa'
                   requires:
                       - prepare-dependencies
@@ -142,10 +143,11 @@ workflows:
                       - hold
     deploy-dev-workflow:
         jobs:
-            - deploy-dev:
+            - build:
                 filters:
                   branches:
                     only:
                       - master
+            - deploy-dev:
                 requires:
                   - build
