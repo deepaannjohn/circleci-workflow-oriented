@@ -133,14 +133,14 @@ workflows:
                     branches:
                         only:
                             - circleci-project-setup
-            - deploy-qa:
-                  velocity-parameter: 'passing this as qa'
-                  requires:
-                      - prepare-dependencies
             - hold:
                   type: approval
                   requires:
-                      - deploy-qa
+                      - prepare-dependencies
+            - deploy-qa:
+                  velocity-parameter: 'passing this as qa'
+                  requires:
+                      - hold
             - deploy-prod:
                   velocity-parameter: 'passing this as prod'
                   requires:
