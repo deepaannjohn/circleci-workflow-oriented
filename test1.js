@@ -1,3 +1,3 @@
 let n = 1
 
-l
+let j =0
